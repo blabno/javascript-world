@@ -1,0 +1,8 @@
+<h1>{{ home.text }}</h1>
+
+<div>
+    <label for="name">What's your name?</label>
+    <input id="name" ng-model="home.name"/>
+</div>
+
+<h2 ng-show="home.name">Hello {{ home.name }}</h2>

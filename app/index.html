@@ -5,15 +5,17 @@
     <!-- bower:css -->
     <!-- endbower -->
 </head>
-<body ng-app="javaScriptWorld" ng-controller="home as home">
-<h1>{{ home.text }}</h1>
+<body ng-app="javaScriptWorld">
 
-<input ng-model="home.text"/>
+<div>
+    <a href="#/">Home</a>
+</div>
 
-<h2>How's that?</h2>
+<div ng-view></div>
 
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
 <!-- endbower -->
 <script src="modules/app.js"></script>
 <script src="modules/home/home.controller.js"></script>
