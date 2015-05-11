@@ -3,20 +3,33 @@
 <head>
     <title>JavaScript World</title>
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
     <!-- endbower -->
 </head>
-<body ng-app="javaScriptWorld">
+<body ng-app="javaScriptWorld" class="container">
 
-<div>
-    <a href="#/">Home</a>
-    <a href="#/users">User list</a>
+<div class="col-sm-12">
+    <div class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/">Home</a>
+            </div>
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="#/users">User list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-<div ng-view></div>
+<div ng-view class="col-sm-12"></div>
 
 <!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <!-- endbower -->
 <script src="modules/app.js"></script>
 <script src="modules/home/home.controller.js"></script>
