@@ -8,5 +8,9 @@ angular.module('javaScriptWorld', ['ngRoute']).config(function ($routeProvider)
         templateUrl: 'modules/user/userList.tpl.html',
         controller: 'userList as userList'
     });
+    $routeProvider.when('/user/:id', {
+        templateUrl: 'modules/user/userDetails.tpl.html',
+        controller: 'userDetails as userDetails'
+    });
     $routeProvider.otherwise({redirectTo: '/'});
 });
