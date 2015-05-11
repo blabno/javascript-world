@@ -4,5 +4,9 @@ angular.module('javaScriptWorld', ['ngRoute']).config(function ($routeProvider)
         templateUrl: 'modules/home/home.tpl.html',
         controller: 'home as home'
     });
+    $routeProvider.when('/users', {
+        templateUrl: 'modules/user/userList.tpl.html',
+        controller: 'userList as userList'
+    });
     $routeProvider.otherwise({redirectTo: '/'});
 });
