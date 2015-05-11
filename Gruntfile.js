@@ -53,6 +53,13 @@ module.exports = function (grunt)
                     }
                 }
             }
+        },
+        wiredep: {
+            app: {
+                src: ['<%= config.app %>/index.html'],
+                exclude: [],
+                ignorePath: '<%= config.app %>/'
+            }
         }
     });
 
