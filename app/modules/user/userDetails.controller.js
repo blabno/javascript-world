@@ -15,4 +15,9 @@ angular.module('javaScriptWorld').controller('userDetails', function ($routePara
 
     this.user = users[$routeParams.id];
 
+    this.save = function ()
+    {
+        alert('User saved:' + JSON.stringify(this.user, null, '  '));
+    }
+
 });
