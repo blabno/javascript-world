@@ -1,15 +1,9 @@
-angular.module('javaScriptWorld').controller('userList', function ()
+angular.module('javaScriptWorld').controller('userList', function (userDAO)
 {
-    this.users = [
-        {
-            id: 1,
-            email: 'bernard.labno@pjwstk.edu.pl',
-            status: 'active'
-        },
-        {
-            id: 2,
-            email: 's4237@pjwstk.edu.pl',
-            status: 'inactive'
-        }
-    ];
+    var ctrl = this;
+
+    userDAO.query().$promise.then(function (result)
+    {
+        ctrl.users = result;
+    });
 });

@@ -1,23 +1,18 @@
-angular.module('javaScriptWorld').controller('userDetails', function ($routeParams)
+angular.module('javaScriptWorld').controller('userDetails', function ($location, $routeParams, userDAO)
 {
-    var users = {
-        1: {
-            id: 1,
-            email: 'bernard.labno@pjwstk.edu.pl',
-            status: 'active'
-        },
-        2: {
-            id: 2,
-            email: 's4237@pjwstk.edu.pl',
-            status: 'inactive'
-        }
-    };
-
-    this.user = users[$routeParams.id];
+    var ctrl = this;
 
     this.save = function ()
     {
-        alert('User saved:' + JSON.stringify(this.user, null, '  '));
-    }
+        userDAO.save(this.user).$promise.then(function ()
+        {
+            $location.path('/users');
+        });
+    };
+
+    userDAO.get({id: $routeParams.id}).$promise.then(function (result)
+    {
+        ctrl.user = result;
+    });
 
 });

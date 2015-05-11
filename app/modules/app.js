@@ -1,4 +1,4 @@
-angular.module('javaScriptWorld', ['ngRoute']).config(function ($routeProvider)
+angular.module('javaScriptWorld', ['ngRoute', 'ngResource']).config(function ($routeProvider)
 {
     $routeProvider.when('/', {
         templateUrl: 'modules/home/home.tpl.html',
