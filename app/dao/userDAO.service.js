@@ -2,45 +2,48 @@
 {
     'use strict';
 
-    var userIdSequence = 3;
-    var users = {
-        1: {
-            id: 1,
-            email: 'bernard.labno@pjwstk.edu.pl',
-            status: 'active'
-        },
-        2: {
-            id: 2,
-            email: 's4237@pjwstk.edu.pl',
-            status: 'inactive'
+    var mongoose = require('mongoose-q')(require('mongoose'));
+    var taskSchema = new mongoose.Schema({
+        email: String,
+        status: {
+            type: String,
+            enum: [
+                'active', 'inactive'
+            ]
         }
-    };
+
+    }, {
+        collection: 'user'
+    });
+    var Model = mongoose.model('user', taskSchema);
+
+    function fromMongo(element)
+    {
+        if (element instanceof Array) {
+            return element.map(fromMongo);
+        }
+        element._doc.id = element._doc._id;
+        delete element._doc._id;
+        delete element._doc.__v;
+        return element._doc;
+    }
 
     module.exports = {
         get: function (id)
         {
-            return users[id];
+            return Model.findByIdQ(id).then(fromMongo);
         },
         query: function ()
         {
-            var userList = [];
-            for (var key in users) {
-                userList.push(users[key]);
-            }
-            return userList;
+            return Model.findQ().then(fromMongo);
         },
         save: function (user)
         {
-            if (users[user.id]) {
-                users[user.id].email = user.email;
-                users[user.id].status = user.status;
+            if (!user.id) {
+                return new Model(user).saveQ().then(fromMongo)
             } else {
-                if (!user.id) {
-                    user.id = userIdSequence++;
-                }
-                users[user.id] = user;
+                return Model.findByIdAndUpdateQ(user.id, user).then(fromMongo)
             }
-            return users[user.id];
         }
     }
 })();
