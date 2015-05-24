@@ -3,7 +3,7 @@
     'use strict';
 
     var mongoose = require('mongoose-q')(require('mongoose'));
-    var taskSchema = new mongoose.Schema({
+    var schema = new mongoose.Schema({
         email: String,
         status: {
             type: String,
@@ -15,7 +15,7 @@
     }, {
         collection: 'user'
     });
-    var Model = mongoose.model('user', taskSchema);
+    var Model = mongoose.model('user', schema);
 
     function fromMongo(element)
     {
@@ -44,6 +44,7 @@
             } else {
                 return Model.findByIdAndUpdateQ(user.id, user).then(fromMongo)
             }
-        }
+        },
+        schema: schema
     }
 })();
